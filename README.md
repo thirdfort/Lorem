@@ -46,6 +46,41 @@ Lorem supports various placeholder APIs, including:
 
 The most basic usage can be achieved using simple `String`:
 
+```swift
+Lorem.word
+Lorem.sentence
+Lorem.paragraph
+Lorem.title
+Lorem.name
+Lorem.url
+Lomem.email
+Lorem.date
+```
+
+Since Lorem supports Swift Generics, you can also use it in more contexts:
+
+```swift
+let url: URL = Lorem.url
+let date: Date = Lorem.date
+```
+
+Which also means all of the APIs are also available conveniently in SwiftUI
+
+```swift
+Lorem.title  // Text
+Lorem.color  // Color
+Lorem.image  // Image
+```
+
+Primitives are also available which allows for usage in more scenarios, including UIKit:
+
+```swift
+Lorem.url    // URL
+Lorem.date   // Date
+Lorem.color  // Color, UIColor, NSColor
+Lorem.image  // Image, UIImage, NSImage
+```
+
 ## Advanced
 
 Lorem provides access to its underlying placeholder data primitives, as well as a reusable composer that simplifies text generation. This enables you to easily create custom Lorem placeholders for content where the library doesn't quite meet your needs.

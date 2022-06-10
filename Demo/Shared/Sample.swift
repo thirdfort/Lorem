@@ -11,20 +11,8 @@ public struct SampleView: View {
             List {
                 Section("Images") {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
+                        HStack(spacing: 20) {
                             if #available(iOS 15, *) {
-                                Lorem.asyncImage(size: 100) { phase in
-                                    switch phase {
-                                    case .success(let image):
-                                        image
-                                            .resizable()
-                                            .scaledToFit()
-                                    default:
-                                        Rectangle()
-                                            .foregroundColor(Color.primary.opacity(0.2))
-                                    }
-                                }
-
                                 Lorem.asyncImage(size: 100) { phase in
                                     switch phase {
                                     case .success(let image):
@@ -60,39 +48,29 @@ public struct SampleView: View {
                 }
 
                 Section("Colors") {
-//                    Cell("Any") {
-//                        HStack(spacing: 5) {
-//                            ForEach(0..<10) { _ in
-//                                Lorem.color(in: .any)
-//                            }
-//                        }
-//                    }
-
-                    Cell("Grayscale") {
+                    Cell("Any") {
                         HStack(spacing: 5) {
                             ForEach(0..<10) { _ in
-//                                Lorem.color(in: .any)
-
-                                Lorem.color(in: .grayscale)
-
-
-//                                Lorem.color(in: .system)
-//
-//
-//                                Lorem.color(in: .hue(saturation: 0.5))
-
-
+                                Lorem.color(in: .any)
                             }
                         }
                     }
 
-//                    Cell("System") {
-//                        HStack(spacing: 5) {
-//                            ForEach(0..<10) { _ in
-//                                Lorem.color(in: .system)
-//                            }
-//                        }
-//                    }
+                    Cell("Grayscale") {
+                        HStack(spacing: 5) {
+                            ForEach(0..<10) { _ in
+                                Lorem.color(in: .grayscale)
+                            }
+                        }
+                    }
+
+                    Cell("System") {
+                        HStack(spacing: 5) {
+                            ForEach(0..<10) { _ in
+                                Lorem.color(in: .system)
+                            }
+                        }
+                    }
 
                     Cell("Hues") {
                         HStack(spacing: 5) {
@@ -109,7 +87,7 @@ public struct SampleView: View {
                     Cell("Sentence", Lorem.sentence)
                     Cell("Domain") { Lorem.url }
                     Cell("Email") { Lorem.email }
-//                    Cell("Tweet", Lorem.tweet)
+                    Cell("Tweet", Lorem.tweet)
                 }
 
                 Section("Dates") {

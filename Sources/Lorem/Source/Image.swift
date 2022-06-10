@@ -1,5 +1,44 @@
 import SwiftUI
 
+#if os(iOS) || os(tvOS) || os(watchOS)
+public extension Lorem where Content == UIImage {
+
+    /// Returns a `200x200px` placeholder image that uses the `picsum.photos` API
+    static var image: Content? { image(size: 200) }
+
+    /// Returns a placeholder image that uses the `picsum.photos` API
+    /// - Parameters:
+    ///   - source: The image source to use for fetching the placeholder
+    ///   - size: The desired size, for both the width and height dimencions, for this placeholder
+    ///   - grayscale: If `true`, the placeholder will be returned as a grayscale image
+    static func image(source: ImageSource = .random, size: CGFloat, grayscale: Bool = false) -> UIImage? {
+        let url = Lorem<URL>.image(source: source, size: size, grayscale: grayscale)
+        let data = try? Foundation.Data(contentsOf: url)
+        return data.flatMap { .init(data: $0) }
+    }
+
+}
+#endif
+
+#if os(macOS)
+public extension Lorem where Content == NSImage {
+
+    /// Returns a `200x200px` placeholder image that uses the `picsum.photos` API
+    static var image: Content? { image(size: 200) }
+
+    /// Returns a placeholder image that uses the `picsum.photos` API
+    /// - Parameters:
+    ///   - source: The image source to use for fetching the placeholder
+    ///   - size: The desired size, for both the width and height dimencions, for this placeholder
+    ///   - grayscale: If `true`, the placeholder will be returned as a grayscale image
+    static func image(source: ImageSource = .random, size: CGFloat, grayscale: Bool = false) -> Content? {
+        let url = Lorem<URL>.image(source: source, size: size, grayscale: grayscale)
+        return .init(contentsOf: url)
+    }
+
+}
+#endif
+
 @available(iOS 15, *)
 @available(tvOS 15, *)
 @available(watchOS 8, *)
