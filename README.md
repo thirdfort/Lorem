@@ -37,10 +37,13 @@ Lorem supports various placeholder APIs, including:
 - Dates
 - URLs
 - Images
-- Colors
 - SwiftUI View's
 
 > While most features are supported across all platforms and version, some (like `AsyncImage`) are only available in supported environments.
+
+In addition to text and images, Lorem also provides useful APIs for working with other types, including `Color`:
+
+![Lorem sample](https://github.com/thirdfort/Lorem/blob/main/Demo/Resources/colors.png?raw=true)
 
 ## Usage
 
