@@ -45,6 +45,20 @@ In addition to text and images, Lorem also provides useful APIs for working with
 
 ![Lorem sample](https://github.com/thirdfort/Lorem/blob/main/Demo/Resources/colors.png?raw=true)
 
+Most APIs also have multiple convenience features to improve the experience where applicable:
+
+```swift
+// Format dates
+Lorem.date(.formatted("HH:mm"))
+Lorem.date(.styled(time: .shortened))
+
+// 3 to 5 words
+Lorem.title(3...5)
+
+// returns the same grayscale image every time
+Lorem.image(source: .seed(0), grayscale: true)
+```
+
 ## Usage
 
 The most basic usage can be achieved using simple `String`:
