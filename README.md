@@ -7,7 +7,7 @@
 
 Introducing Lorem, a placeholder generator library for iOS to help you rapidly prototype, build and test your iOS applications.
 
-![Lorem sample]()
+![Lorem sample](https://github.com/thirdfort/Lorem/blob/main/Demo/Resources/lorem.png?raw=true)
 
 By leveraging Swift generics we're also able to provide a simple, consistent API to make it easier to discover and even find all references when you're ready to remove your placeholder data.
 
