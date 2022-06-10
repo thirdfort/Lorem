@@ -21,17 +21,30 @@ var body: some View {
 }
 ```
 
+## Why?
+
+Lorem placeholder content is extremely useful when prototyping or even while building your apps while live data is unavailable or just not feasible to access yet. 
+
+Its also incredibly useful when running both manual and automation test suites, as it allows for a more controlled and/or varied set of values to be tested, revealing layout and other issues that may have been missed or difficult to reproduce otherwise.
+
+Lastly, Lorem data is more clearly _placeholder_ data, which can help stakeholders and other team members better identify where live-data is yet to be implemented.
+
 ## Features
 
 Lorem supports various placeholder APIs, including:
 
 - Strings
 - Dates
-- Images
 - URLs
+- Images
+- Colors
 - SwiftUI View's
 
 > While most features are supported across all platforms and version, some (like `AsyncImage`) are only available in supported environments.
+
+## Usage
+
+The most basic usage can be achieved using simple `String`:
 
 ## Advanced
 
