@@ -48,7 +48,7 @@ The most basic usage can be achieved using simple `String`:
 
 ## Advanced
 
-Lorem provides access to its underlying placeholder data primitives, as well as a reusable composer that simplifies Lorem generation. This enables you to easily create custom Lorem placeholders for content where the library doesn't quite meet your needs.
+Lorem provides access to its underlying placeholder data primitives, as well as a reusable composer that simplifies text generation. This enables you to easily create custom Lorem placeholders for content where the library doesn't quite meet your needs.
 
 ```swift
 let keywords = Lorem.Composer(
@@ -59,6 +59,17 @@ let keywords = Lorem.Composer(
 )
 
 // tempora, fugit, sit, molestias, suscipit, voluptate, et, numquam, et, voluptatem, et
+```
+
+Additionally, Lorem provides convenient access to its data sources, so you can build placeholders with the same data used to build the API.
+
+```swift
+Lorem.Data.words
+Lorem.Data.firstNames
+Lorem.Data.lastNames
+Lorem.Data.siteDomains
+Lorem.Data.emailDomains
+// etc
 ```
 
 ## Installation
