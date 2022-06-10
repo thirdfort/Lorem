@@ -9,23 +9,19 @@ public struct SampleView: View {
     public var body: some View {
         NavigationView {
             List {
-                Section { } header: {
+                Section("Images") {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
                             if #available(iOS 15, *) {
-                                Text(Lorem.Composed("", 1, separator: ""))
-                                
-                                Lorem.asyncImage(size: 200) { phase in
+                                Lorem.asyncImage(size: 100) { phase in
                                     switch phase {
                                     case .success(let image):
                                         image
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(maxWidth: 200)
                                     default:
                                         Rectangle()
                                             .foregroundColor(Color.primary.opacity(0.2))
-                                            .frame(width: 200, height: 200)
                                     }
                                 }
 
@@ -48,20 +44,13 @@ public struct SampleView: View {
                             }
                         }
                     }
-                    .cornerRadius(13)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 13, style: .continuous)
-                            .stroke(Color.primary.opacity(0.1), lineWidth: 1)
-                    )
-                    .frame(height: 200)
-                    .padding(.horizontal, -16)
+                    .frame(height: 100)
                 }
-                .padding(.top, 10)
 
                 Section("Colors") {
                     Cell("Any") {
                         HStack(spacing: 5) {
-                            ForEach(0..<4) { _ in
+                            ForEach(0..<10) { _ in
                                 Lorem.color(in: .any)
                             }
                         }
@@ -69,15 +58,28 @@ public struct SampleView: View {
 
                     Cell("Grayscale") {
                         HStack(spacing: 5) {
-                            ForEach(0..<4) { _ in
+                            ForEach(0..<10) { _ in
+
+
+                                Lorem.color(in: .any)
+
+
                                 Lorem.color(in: .grayscale)
+
+
+                                Lorem.color(in: .system)
+
+
+                                Lorem.color(in: .hue(saturation: 0.5))
+
+
                             }
                         }
                     }
 
                     Cell("System") {
                         HStack(spacing: 5) {
-                            ForEach(0..<4) { _ in
+                            ForEach(0..<10) { _ in
                                 Lorem.color(in: .system)
                             }
                         }
@@ -85,59 +87,47 @@ public struct SampleView: View {
 
                     Cell("Hues") {
                         HStack(spacing: 5) {
-                            ForEach(0..<4) { _ in
+                            ForEach(0..<10) { _ in
                                 Lorem.color(in: .hue(saturation: 0.5))
                             }
                         }
                     }
                 }
 
-                Section {
-                    Lorem.title
-                }
-
-                Section("Titles") {
+                Section("Text") {
                     Cell("Title", Lorem.title)
-                }
-
-                Section("Dates") {
-                    Cell("Relative", Lorem.date(within: 2, component: .week, format: .relative()))
-                    Cell("Formatted", Lorem.date(.formatted("HH:mm")))
-                    Cell("Styled", Lorem.date(.styled(date: .numeric, time: .shortened)))
-                    Cell("iSO 8601", Lorem.date(.iso8601))
-                }
-
-                Section("Web") {
+                    Cell("Keywords", Lorem.keywords)
+                    Cell("Sentence", Lorem.sentence)
                     Cell("Domain") { Lorem.url }
                     Cell("Email") { Lorem.email }
                     Cell("Tweet", Lorem.tweet)
                 }
 
-                Section("Names") {
-                    Cell("Number of first names", Lorem.Data.firstNames.count)
-                    Cell("Number of last names", Lorem.Data.lastNames.count)
-                    Cell("Name", Lorem.name)
-                }
-
-                Section("Words") {
-                    Cell("Number of words", Lorem.Data.words.count)
-                    Cell("Five Words", Lorem.words(5))
-                }
-
-                Section("Sentences") {
-                    Cell("Single", Lorem.sentence)
-                    Cell("Two Sentences", Lorem.sentences(2))
+                Section("Dates") {
+                    Cell("Relative", Lorem.date(within: 2, component: .week, format: .relative()))
+                    Cell("Styled", Lorem.date(.styled(date: .numeric, time: .shortened)))
+                    Cell("ISO 8601", Lorem.date(.iso8601))
+                    Cell("Custom (HH:mm)", Lorem.date(.formatted("HH:mm")))
                 }
 
                 Section("Paragraphs") {
                     Cell("Single", Lorem.paragraph)
                     Cell("Two Paragraphs", Lorem.paragraphs(2, separator: "\n\n"))
                 }
+
+                Section("Data") {
+                    Cell("Number of words", Lorem.Data.words.count)
+                    Cell("Number of first names", Lorem.Data.firstNames.count)
+                    Cell("Number of last names", Lorem.Data.lastNames.count)
+                    Cell("Number of site domains", Lorem.Data.siteDomains.count)
+                    Cell("Number of email domains", Lorem.Data.emailDomains.count)
+                }
             }
             .font(.callout)
             #if os(iOS)
             .listStyle(.insetGrouped)
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(true)
             #endif
             .navigationTitle("Lorem")
         }

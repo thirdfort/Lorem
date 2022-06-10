@@ -7,6 +7,18 @@ public extension Lorem where Content == Text {
         .init(Lorem<String>.title)
     }
 
+    /// Returns a placeholder for representing a title, containing the specified number of words
+    /// - Parameter count: The number of times a word should be generated
+    static func title(_ count: Int) -> Content {
+        .init(Lorem<String>.title(count))
+    }
+
+    /// Returns a placeholder for representing a title, containing the specified number of words
+    /// - Parameter countRange: The number of times a word should be generated, the actual count will be a random value in the provided range
+    static func title(_ countRange: ClosedRange<Int>) -> Content {
+        .init(Lorem<String>.title(countRange))
+    }
+
     /// Returns a placeholder for representing a person's first name
     static var firstName: Content {
         .init(Lorem<String>.firstName)
@@ -35,6 +47,14 @@ public extension Lorem where Content == Text {
         .init(Lorem<String>.sentences(count, separator: separator))
     }
 
+    /// Returns a placeholder for representing the specified number of sentences
+    /// - Parameters:
+    ///   - countRange: The number of times a sentence should be generated, the actual count will be a random value in the provided range
+    ///   - separator: The separator to use when composing these sentences
+    static func sentences(_ countRange: ClosedRange<Int>, separator: String = " ") -> Content {
+        .init(Lorem<String>.sentences(countRange, separator: separator))
+    }
+
     /// Returns a placeholder for representing a single paragraph
     static var paragraph: Content {
         .init(Lorem<String>.paragraph)
@@ -46,6 +66,14 @@ public extension Lorem where Content == Text {
     ///   - separator: The separator to use when composing these paragraphs
     static func paragraphs(_ count: Int, separator: String = "\n") -> Content {
         .init(Lorem<String>.paragraphs(count, separator: separator))
+    }
+
+    /// Returns a placeholder for representing the specified number of paragraphs
+    /// - Parameters:
+    ///   - count: The number of times a paragraph should be generated, the actual count will be a random value in the provided range
+    ///   - separator: The separator to use when composing these paragraphs
+    static func paragraphs(_ countRange: ClosedRange<Int>, separator: String = "\n") -> Content {
+        .init(Lorem<String>.paragraphs(countRange, separator: separator))
     }
 
     /// Returns a placeholder URL
@@ -61,6 +89,23 @@ public extension Lorem where Content == Text {
     /// Returns a 140 character placeholder representing a tweet
     static var tweet: Content {
         .init(Lorem<String>.tweet)
+    }
+
+    /// Returns a set of placeholder keywords, containing 5 to 10 words
+    static var keywords: Content {
+        .init(Lorem<String>.keywords)
+    }
+
+    /// Returns a set of placeholder keywords for representing the specified number of words
+    /// - Parameter count: The number of times a word should be generated
+    static func keywords(_ count: Int) -> Content {
+        .init(Lorem<String>.keywords(count))
+    }
+
+    /// Returns a set of placeholder keywords for representing the specified number of words
+    /// - Parameter countRange: The number of times a word should be generated, the actual count will be a random value in the provided range
+    static func keywords(_ countRange: ClosedRange<Int>) -> Content {
+        .init(Lorem<String>.keywords(countRange))
     }
 
     /// Returns a placeholder date, within the past 20 years, using the ISO8601 format

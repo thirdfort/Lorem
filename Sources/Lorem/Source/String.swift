@@ -13,13 +13,32 @@ public extension Lorem where Content == String {
     ///   - count: The number of times a word should be generated
     ///   - separator: The separator to use when composing these words
     static func words(_ count: Int, separator: String = " ") -> String {
-        Composed(L.Data.words.randomElement()!, count, separator: separator)
+        Composer(L.Data.words.randomElement()!, count: count, separator: separator)
     }
 
-    /// Returns a placeholder for representing a title
+    /// Returns a placeholder for representing the specified number of words
+    /// - Parameters:
+    ///   - countRange: The number of times a word should be generated, the actual count will be a random value in the provided range
+    ///   - separator: The separator to use when composing these words
+    static func words(_ countRange: ClosedRange<Int>, separator: String = " ") -> String {
+        Composer(L.Data.words.randomElement()!, countRange: countRange, separator: separator)
+    }
+
+    /// Returns a placeholder for representing a title, containing 2 to 5 words
     static var title: String {
-        let wordsInTitle = (2...7).randomElement()!
+        let wordsInTitle = (2...5).randomElement()!
         return words(wordsInTitle).capitalized
+    }
+
+    /// Returns a placeholder for representing a title, containing the specified number of words
+    static func title(_ count: Int) -> String {
+        words(count).capitalized
+    }
+
+    /// Returns a placeholder for representing a title, containing the specified number of words
+    /// - Parameter countRange: The number of times a word should be generated, the actual count will be a random value in the provided range
+    static func title(_ countRange: ClosedRange<Int>) -> String {
+        words(countRange).capitalized
     }
 
     /// Returns a placeholder for representing a person's first name
@@ -37,10 +56,9 @@ public extension Lorem where Content == String {
         "\(firstName) \(lastName)"
     }
 
-    /// Returns a placeholder for representing a single sentence
+    /// Returns a placeholder for representing a single sentence, containing 5 to 10 words
     static var sentence: String {
-        let wordsInSentence = (4...16).randomElement()!
-        return Composed(word, wordsInSentence, separator: " ", terminator: ".").capitalizingFirstLetter
+        Composer(word, countRange: 5...10, separator: " ", terminator: ".").capitalizingFirstLetter
     }
 
     /// Returns a placeholder for representing the specified number of sentences
@@ -48,13 +66,20 @@ public extension Lorem where Content == String {
     ///   - count: The number of times a sentence should be generated
     ///   - separator: The separator to use when composing these sentences
     static func sentences(_ count: Int, separator: String = " ") -> String {
-        Composed(sentence, count, separator: separator)
+        Composer(sentence, count: count, separator: separator)
     }
 
-    /// Returns a placeholder for representing a single paragraph
+    /// Returns a placeholder for representing the specified number of sentences
+    /// - Parameters:
+    ///   - countRange: The number of times a sentence should be generated, the actual count will be a random value in the provided range
+    ///   - separator: The separator to use when composing these sentences
+    static func sentences(_ countRange: ClosedRange<Int>, separator: String = " ") -> String {
+        Composer(sentence, countRange: countRange, separator: separator)
+    }
+
+    /// Returns a placeholder for representing a single paragraph, containing 2 to 5 sentences
     static var paragraph: String {
-        let sentencesInParagraph = (3...9).randomElement()!
-        return sentences(sentencesInParagraph)
+        sentences(2...5)
     }
 
     /// Returns a placeholder for representing the specified number of paragraphs
@@ -62,7 +87,15 @@ public extension Lorem where Content == String {
     ///   - count: The number of times a paragraph should be generated
     ///   - separator: The separator to use when composing these paragraphs
     static func paragraphs(_ count: Int, separator: String = "\n") -> String {
-        Composed(paragraph, count, separator: separator)
+        Composer(paragraph, count: count, separator: separator)
+    }
+
+    /// Returns a placeholder for representing the specified number of paragraphs
+    /// - Parameters:
+    ///   - count: The number of times a paragraph should be generated, the actual count will be a random value in the provided range
+    ///   - separator: The separator to use when composing these paragraphs
+    static func paragraphs(_ countRange: ClosedRange<Int>, separator: String = "\n") -> String {
+        Composer(paragraph, countRange: countRange, separator: separator)
     }
 
     /// Returns a placeholder URL
@@ -80,6 +113,23 @@ public extension Lorem where Content == String {
     /// Returns a 140 character placeholder representing a tweet
     static var tweet: String {
         L.Data.tweets.randomElement()!
+    }
+
+    /// Returns a set of placeholder keywords, containing 5 to 10 words
+    static var keywords: String {
+        Composer(word, countRange: 5...10, separator: ", ")
+    }
+
+    /// Returns a set of placeholder keywords for representing the specified number of words
+    /// - Parameter count: The number of times a word should be generated
+    static func keywords(_ count: Int) -> String {
+        Composer(word, count: count, separator: ", ")
+    }
+
+    /// Returns a set of placeholder keywords for representing the specified number of words
+    /// - Parameter countRange: The number of times a word should be generated, the actual count will be a random value in the provided range
+    static func keywords(_ countRange: ClosedRange<Int>) -> String {
+        Composer(word, countRange: countRange, separator: ", ")
     }
 
     /// Returns a placeholder date, within the past 20 years, using the ISO8601 format

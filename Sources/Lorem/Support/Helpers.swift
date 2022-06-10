@@ -15,8 +15,25 @@ public extension Lorem where Content == String {
     ///   - count: The number of `value`'s to add to the composed `String`
     ///   - separator: The separator used to form the composed string
     ///   - terminator: The terminator used to suffix the string
-    static func Composed(_ value: @autoclosure () -> String, _ count: Int, separator: String, terminator: String = "") -> Content {
+    static func Composer(_ value: @autoclosure () -> String, count: Int, separator: String, terminator: String = "") -> Content {
         var result = ""
+
+        for index in 0..<count {
+            result += value()
+
+            if (index < count - 1) {
+                result += separator
+            } else {
+                result += terminator
+            }
+        }
+
+        return result
+    }
+
+    static func Composer(_ value: @autoclosure () -> String, countRange: ClosedRange<Int>, separator: String, terminator: String = "") -> Content {
+        var result = ""
+        let count = countRange.randomElement() ?? 1
 
         for index in 0..<count {
             result += value()
