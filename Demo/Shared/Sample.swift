@@ -51,7 +51,7 @@ public struct SampleView: View {
                     Cell("Any") {
                         HStack(spacing: 5) {
                             ForEach(0..<10) { _ in
-                                Lorem.color(in: .any)
+                                Lorem.color(.any)
                             }
                         }
                     }
@@ -59,7 +59,7 @@ public struct SampleView: View {
                     Cell("Grayscale") {
                         HStack(spacing: 5) {
                             ForEach(0..<10) { _ in
-                                Lorem.color(in: .grayscale)
+                                Lorem.color(.grayscale)
                             }
                         }
                     }
@@ -67,7 +67,7 @@ public struct SampleView: View {
                     Cell("System") {
                         HStack(spacing: 5) {
                             ForEach(0..<10) { _ in
-                                Lorem.color(in: .system)
+                                Lorem.color(.system)
                             }
                         }
                     }
@@ -75,7 +75,7 @@ public struct SampleView: View {
                     Cell("Hues") {
                         HStack(spacing: 5) {
                             ForEach(0..<10) { _ in
-                                Lorem.color(in: .hue(saturation: 0.5))
+                                Lorem.color(.hue(saturation: 0.5))
                             }
                         }
                     }
