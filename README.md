@@ -17,7 +17,7 @@ Lorem.title // return String
 
 // But if we use the same code inside a SwiftUI View
 var body: some View {
-	Lorem.title // returns Text
+    Lorem.title // returns Text
 }
 ```
 
