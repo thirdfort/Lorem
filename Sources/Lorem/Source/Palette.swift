@@ -24,12 +24,12 @@ public extension Palette where Self == System {
 }
 
 public extension Palette where Self == HSB {
-    /// Represents colors in the HSB range where the saturation is `0.6` and brightness is `0.9`
+    /// Represents colors in the HSB range where the saturation is `0.7` and brightness is `0.9`
     static var hue: Self { .init(saturation: nil, brightness: nil) }
 
     /// Represents colors in the HSB range with the specified saturation and brightness
     /// - Parameters:
-    ///   - saturation: The saturation value to apply in the range `0...1`. Defaults to `0.6`
+    ///   - saturation: The saturation value to apply in the range `0...1`. Defaults to `0.7`
     ///   - brightness: The brightness value to apply in the range `0...1`. Defaults to `0.9`
     static func hue(saturation: CGFloat? = nil, brightness: CGFloat? = nil) -> Self {
         .init(saturation: saturation, brightness: brightness)
@@ -120,6 +120,6 @@ public struct HSB: Palette {
     public var color: Color {
         let h = (0...360).randomElement()!
         let hue = CGFloat(h) / 360
-        return Color(hue: hue, saturation: saturation ?? 0.6, brightness: brightness ?? 0.9)
+        return Color(hue: hue, saturation: saturation ?? 0.7, brightness: brightness ?? 0.9)
     }
 }
