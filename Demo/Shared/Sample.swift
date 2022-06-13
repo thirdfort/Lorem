@@ -1,22 +1,22 @@
 import SwiftUI
 import Lorem
 
-extension ColorPalette {
-    var title: String {
-        switch self {
-        case .system: return "System"
-        case .grayscale: return "Grayscale"
-        case .hue: return "Hue"
-        default: return "Any"
-        }
-    }
+struct ColorPalette {
+    let title: String
+    let palette: Palette
 }
 
 @available(iOS 14, *)
 @available(macOS 12, *)
 public struct SampleView: View {
-    let palettes: [ColorPalette] = [.any, .grayscale, .system, .hue]
-    public init() { }
+    let palettes: [ColorPalette] = [
+        .init(title: "RGB", palette: .rgb),
+        .init(title: "System", palette: .system),
+        .init(title: "Grayscale (neutral)", palette: .grayscale(.neutral)),
+        .init(title: "Grayscale (cool)", palette: .grayscale(.cool)),
+        .init(title: "Grayscale (warm)", palette: .grayscale(.warm)),
+        .init(title: "Hue", palette: .hue),
+    ]
     
     public var body: some View {
         NavigationView {
@@ -60,11 +60,12 @@ public struct SampleView: View {
                 }
 
                 Section("Colors") {
-                    ForEach(palettes, id: \.self) { palette in
-                        Cell(palette.title) {
+                    ForEach(palettes.indices, id: \.self) { index in
+                        Cell(palettes[index].title) {
                             HStack(spacing: 5) {
                                 ForEach(0..<10) { _ in
-                                    Lorem.color(palette)
+                                    Lorem.color(palettes[index].palette)
+                                        .frame(height: 40)
                                 }
                             }
                         }
