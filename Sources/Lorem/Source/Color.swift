@@ -54,20 +54,46 @@ public extension Lorem where Content == Color {
 }
 
 /// Represents the available color palettes for generating consistent color values
-public enum ColorPalette {
+public struct ColorPalette: Hashable {
+    enum Palette: Hashable {
+        case any
+        case grayscale
+        case system
+        case hue(sat: CGFloat?, brightness: CGFloat?)
+    }
+
+    internal let palette: Palette
+}
+
+public extension ColorPalette {
+
     /// Generates a RGB color value
-    case any
+    static var `any`: Self { .init(palette: .any) }
+
+    /// Generates a grayscale color value
+    static var grayscale: Self { .init(palette: .grayscale) }
+
+    /// Generates a pre-defined system color value that's color-scheme aware. (e.g. blue, red, green, etc.)
+    static var system: Self { .init(palette: .system) }
+
+    /// Generates a hue color value, where the saturation is `0.75` and the brightness is `0.9`
+    static var hue: Self {
+        .init(palette: .hue(sat: 0.75, brightness: 0.9))
+    }
+
     /// Generates a hue color value, using the specified saturation and brightness if provided
     /// - Parameter saturation: The saturation value to apply, in the range `0...1`. Defaults to a random value
     /// - Parameter brightness: The brightness value to apply, in the range `0...1`. Defaults to `0.9`
-    case hue(saturation: CGFloat? = nil, brightness: CGFloat? = nil)
-    /// Generates a grayscale color value
-    case grayscale
-    /// Generates a pre-defined system color value that's color-scheme aware. (e.g. blue, red, green, etc.)
-    case system
+    static func hue(saturation: CGFloat? = nil, brightness: CGFloat? = nil) -> Self {
+        .init(palette: .hue(sat: saturation, brightness: brightness))
+    }
+
+}
+
+internal extension ColorPalette {
 
     var color: Color {
-        switch self {
+        switch palette {
         case .any:
             let r = (0...255).randomElement()!
             let g = (0...255).randomElement()!
@@ -80,12 +106,9 @@ public enum ColorPalette {
             return Color(red: red, green: green, blue: blue)
         case .hue(let saturation, let brightness):
             let h = (0...360).randomElement()!
-            let s = (0...100).randomElement()!
-
             let hue = CGFloat(h) / 360
-            let sat = CGFloat(s) / 100
 
-            return Color(hue: hue, saturation: saturation ?? sat, brightness: brightness ?? 0.9)
+            return Color(hue: hue, saturation: saturation ?? 0.75, brightness: brightness ?? 0.9)
         case .grayscale:
             let b = (5...95).randomElement()!
             let brightness = CGFloat(b) / 100
@@ -121,4 +144,5 @@ public enum ColorPalette {
 #endif
         }
     }
+
 }

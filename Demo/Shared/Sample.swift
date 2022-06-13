@@ -1,9 +1,21 @@
 import SwiftUI
 import Lorem
 
+extension ColorPalette {
+    var title: String {
+        switch self {
+        case .system: return "System"
+        case .grayscale: return "Grayscale"
+        case .hue: return "Hue"
+        default: return "Any"
+        }
+    }
+}
+
 @available(iOS 14, *)
 @available(macOS 12, *)
 public struct SampleView: View {
+    let palettes: [ColorPalette] = [.any, .grayscale, .system, .hue]
     public init() { }
     
     public var body: some View {
@@ -48,34 +60,12 @@ public struct SampleView: View {
                 }
 
                 Section("Colors") {
-                    Cell("Any") {
-                        HStack(spacing: 5) {
-                            ForEach(0..<10) { _ in
-                                Lorem.color(.any)
-                            }
-                        }
-                    }
-
-                    Cell("Grayscale") {
-                        HStack(spacing: 5) {
-                            ForEach(0..<10) { _ in
-                                Lorem.color(.grayscale)
-                            }
-                        }
-                    }
-
-                    Cell("System") {
-                        HStack(spacing: 5) {
-                            ForEach(0..<10) { _ in
-                                Lorem.color(.system)
-                            }
-                        }
-                    }
-
-                    Cell("Hues") {
-                        HStack(spacing: 5) {
-                            ForEach(0..<10) { _ in
-                                Lorem.color(.hue(saturation: 0.5))
+                    ForEach(palettes, id: \.self) { palette in
+                        Cell(palette.title) {
+                            HStack(spacing: 5) {
+                                ForEach(0..<10) { _ in
+                                    Lorem.color(palette)
+                                }
                             }
                         }
                     }

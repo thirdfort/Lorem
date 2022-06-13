@@ -133,7 +133,7 @@ public enum RelativeStyle: String {
     case complete
 }
 
-public enum DateFormat {
+public enum DateFormat: Equatable {
     case iso8601
     case relative(_ style: RelativeStyle = .standard)
     case styled(date: DateStyle = .numeric, time: TimeStyle = .standard)
@@ -173,7 +173,7 @@ public enum DateFormat {
 }
 
 /// Represents various date components
-public enum DateComponent {
+public enum DateComponent: Equatable {
     /// Represents the `minute` calendar component
     case minute
     /// Represents the `hour` calendar component
