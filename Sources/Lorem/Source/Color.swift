@@ -31,7 +31,7 @@ public extension Lorem where Content == NSColor {
 
     /// Returns a placeholder color, generated from the specified palette
     /// - Parameter palette: The color palette used to generate the color
-    static func color(_ palette: ColorPalette) -> Content {
+    static func color(_ palette: Palette) -> Content {
         .init(Lorem<Color>.color(palette))
     }
 

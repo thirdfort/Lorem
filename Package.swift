@@ -18,6 +18,14 @@ let package = Package(
         ),
     ],
     targets: [
-        .target(name: "Lorem"),
+        .target(
+            name: "Lorem",
+            resources: [
+                .process("Resources/symbols-1.txt"),
+                .process("Resources/symbols-2.txt"),
+                .process("Resources/symbols-3.txt"),
+                .process("Resources/symbols-4.txt"),
+            ]
+        ),
     ]
 )

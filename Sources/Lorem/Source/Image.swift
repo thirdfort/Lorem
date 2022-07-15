@@ -3,6 +3,11 @@ import SwiftUI
 #if os(iOS) || os(tvOS) || os(watchOS)
 public extension Lorem where Content == UIImage {
 
+    /// Returns a random SF-Symbol image
+    static var systemImage: UIImage? {
+        UIImage(systemName: Lorem<String>.systemImage)
+    }
+
     /// Returns a `200x200px` placeholder image that uses the `picsum.photos` API
     static var image: Content? { image(size: 200) }
 
@@ -22,6 +27,12 @@ public extension Lorem where Content == UIImage {
 
 #if os(macOS)
 public extension Lorem where Content == NSImage {
+
+    /// Returns a random SF-Symbol image
+    @available(macOS 11, *)
+    static var systemImage: NSImage? {
+        NSImage(systemSymbolName: Lorem<String>.systemImage, accessibilityDescription: nil)
+    }
 
     /// Returns a `200x200px` placeholder image that uses the `picsum.photos` API
     static var image: Content? { image(size: 200) }
@@ -88,6 +99,12 @@ public extension Lorem where Content == Image {
             .foregroundColor(color ?? .init(.gray))
 #endif
             .aspectRatio(ratio, contentMode: .fit)
+    }
+
+    /// Returns a random SF-Symbol image
+    @available(iOS 13, tvOS 13, macOS 11, watchOS 6, *)
+    static var systemImage: some View {
+        Image(systemName: Lorem<String>.systemImage)
     }
 }
 
