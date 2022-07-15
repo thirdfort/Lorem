@@ -129,4 +129,31 @@ public extension Lorem where Content == Text {
         .init(Lorem<String>.date(within: value, component: component, locale: locale, format: format))
     }
 
+    /// Returns a placeholder year between 1900 and the current year
+    static var year: Content {
+        .init("\(Lorem<Int>.year)")
+    }
+
+    /// Returns a placeholder year in the specified range
+    static func year(in range: ClosedRange<Int>) -> Content {
+        return Text("\(Lorem<Int>.number(in: range))")
+    }
+
+    /// Returns a placeholder age for an adult
+    static var age: Content {
+        age(for: .adult)
+    }
+
+    /// Returns a placeholder age within the specified age-group
+    static func age(for group: AgeGroup) -> Content {
+        let age = Lorem<String>.age(for: group)
+        return Text("\(age)")
+    }
+
+    /// Returns a placeholder age from the specified reference
+    static func age(year: Int) -> Content {
+        let age = Lorem<String>.age(year: year)
+        return Text("\(age)")
+    }
+
 }

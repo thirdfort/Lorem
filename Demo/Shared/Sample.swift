@@ -88,6 +88,12 @@ public struct SampleView: View {
                     .foregroundColor(.accentColor)
                 }
 
+                Section("Person") {
+                    Cell("Name", Lorem.name)
+                    Cell("Age", Lorem.age(year: 1980))
+                    Cell("Son", Lorem.age(for: .teen))
+                }
+
                 Section("Colors") {
                     ForEach(palettes.indices, id: \.self) { index in
                         Cell(palettes[index].title) {

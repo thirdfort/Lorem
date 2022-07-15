@@ -154,4 +154,21 @@ public extension Lorem where Content == String {
         return Lorem<Date>.formatter(format: format).string(for: date) ?? ""
     }
 
+    /// Returns a placeholder age for an adult
+    static var age: Content {
+        age(for: .adult)
+    }
+
+    /// Returns a placeholder age within the specified age-group
+    static func age(for group: AgeGroup) -> Content {
+        let age = Lorem<Int>.age(for: group)
+        return "\(age)"
+    }
+
+    /// Returns a placeholder age from the specified reference
+    static func age(year: Int) -> Content {
+        let age = Lorem<Int>.age(year: year)
+        return "\(age)"
+    }
+
 }

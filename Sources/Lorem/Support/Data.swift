@@ -46,3 +46,15 @@ public extension Lorem.Data where Content == String {
         ]
     }()
 }
+
+public extension Lorem where Content: BinaryInteger {
+    static func number<R: RangeExpression>(in range: R) -> Content where R: Collection, R.Element == Content {
+        range.randomElement()!
+    }
+}
+
+public extension Lorem where Content: BinaryFloatingPoint {
+    static func number<R: RangeExpression>(in range: R) -> Content where R: Collection, R.Element == Content {
+        range.randomElement()!
+    }
+}
