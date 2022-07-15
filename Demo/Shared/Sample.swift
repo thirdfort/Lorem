@@ -17,6 +17,12 @@ public struct SampleView: View {
         .init(title: "Grayscale (warm)", palette: .grayscale(.warm)),
         .init(title: "Hue", palette: .hue),
     ]
+
+    let systemImages: [String] = [
+        Lorem.systemImage, Lorem.systemImage,
+        Lorem.systemImage, Lorem.systemImage,
+        Lorem.systemImage,
+    ]
     
     public var body: some View {
         NavigationView {
@@ -50,13 +56,36 @@ public struct SampleView: View {
                                             .frame(width: 200, height: 200)
                                     }
                                 }
+                                Lorem.asyncImage(source: .seed(100), size: .init(width: 400, height: 200)) { phase in
+                                    switch phase {
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(maxWidth: 200)
+                                    default:
+                                        Rectangle()
+                                            .foregroundColor(Color.primary.opacity(0.2))
+                                            .frame(width: 200, height: 200)
+                                    }
+                                }
                             } else {
+                                Lorem.image
                                 Lorem.image
                                 Lorem.image(ratio: 1, color: .accentColor)
                             }
                         }
                     }
                     .frame(height: 100)
+
+                    HStack {
+                        Spacer()
+                        ForEach(systemImages, id: \.self) { name in
+                            Image(systemName: name)
+                            Spacer()
+                        }
+                    }
+                    .foregroundColor(.accentColor)
                 }
 
                 Section("Colors") {

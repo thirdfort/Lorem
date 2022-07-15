@@ -75,7 +75,7 @@ public extension Lorem where Content: View {
     ///   - grayscale: If `true`, the placeholder will be returned as a grayscale image
     ///   - transcation: The transaction to use when the phase changes.
     ///   - content: A closure that takes the load phase as an input, and returns the view to display for the specified phase.
-    static func asyncImage<C: View>(source: ImageSource = .random, size: CGSize, grayscale: Bool = false, transcation: Transaction = .init(), @ViewBuilder content: @escaping (AsyncImagePhase) -> C) -> some View {
+    static func asyncImage(source: ImageSource = .random, size: CGSize, grayscale: Bool = false, transcation: Transaction = .init(), @ViewBuilder content: @escaping (AsyncImagePhase) -> Content) -> some View {
         let url = Lorem<URL>.image(source: source, size: size, grayscale: grayscale)
         return AsyncImage(url: url, transaction: transcation, content: content)
     }
@@ -103,7 +103,7 @@ public extension Lorem where Content == Image {
 
     /// Returns a random SF-Symbol image
     @available(iOS 13, tvOS 13, macOS 11, watchOS 6, *)
-    static var systemImage: some View {
+    static var systemImage: Image {
         Image(systemName: Lorem<String>.systemImage)
     }
 }
