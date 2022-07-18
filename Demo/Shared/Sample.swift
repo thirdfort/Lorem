@@ -21,7 +21,7 @@ public struct SampleView: View {
     let systemImages: [String] = [
         Lorem.systemImage, Lorem.systemImage,
         Lorem.systemImage, Lorem.systemImage,
-        Lorem.systemImage,
+        Lorem.systemImage, Lorem.systemImage,
     ]
     
     public var body: some View {
@@ -91,7 +91,7 @@ public struct SampleView: View {
                 Section("Person") {
                     Cell("Name", Lorem.name)
                     Cell("Age", Lorem.age(year: 1980))
-                    Cell("Son", Lorem.age(for: .teen))
+                    Cell("Teenager's age", Lorem.age(for: .teen))
                 }
 
                 Section("Colors") {

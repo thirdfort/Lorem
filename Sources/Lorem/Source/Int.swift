@@ -9,8 +9,8 @@ public enum AgeGroup {
     var range: ClosedRange<Int> {
         switch self {
         case .child: return 1...12
-        case .teen: return 13...18
-        case .adult: return 19...65
+        case .teen: return 13...17
+        case .adult: return 18...65
         case .elderly: return 65...100
         }
     }
