@@ -21,7 +21,7 @@ public struct SampleView: View {
     let systemImages: [String] = [
         Lorem.systemImage, Lorem.systemImage,
         Lorem.systemImage, Lorem.systemImage,
-        Lorem.systemImage,
+        Lorem.systemImage, Lorem.systemImage,
     ]
     
     public var body: some View {
