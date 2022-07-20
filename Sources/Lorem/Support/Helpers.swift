@@ -30,7 +30,12 @@ public extension Lorem where Content == String {
 
         return result
     }
-
+    /// Composes strings, using the specified separator and terminator to generate more complex `String` representations
+    /// - Parameters:
+    ///   - value: An autoclosure that's excuted for each `count` allowing you to provide a unique string value to be composed
+    ///   - countRange: A `ClosedRange` where a random number is taken from to decide the number of `value`'s to add to the composed `String`
+    ///   - separator: The separator used to form the composed string
+    ///   - terminator: The terminator used to suffix the string
     static func Composer(_ value: @autoclosure () -> String, countRange: ClosedRange<Int>, separator: String, terminator: String = "") -> Content {
         var result = ""
         let count = countRange.randomElement() ?? 1
