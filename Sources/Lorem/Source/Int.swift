@@ -49,4 +49,13 @@ public extension Lorem where Content == Int {
         let components: DateComponents = Calendar.current.dateComponents([.year], from: birthdate, to: Date())
         return components.year ?? 0
     }
+
+    static var amount: Content {
+        amount(in: 0...100)
+    }
+
+    static func amount(in range: ClosedRange<Int>, by stride: Int = 5) -> Content {
+        let values = Swift.stride(from: range.lowerBound, through: range.upperBound, by: stride)
+        return Array(values).randomElement() ?? range.lowerBound
+    }
 }

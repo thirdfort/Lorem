@@ -156,4 +156,25 @@ public extension Lorem where Content == Text {
         return Text("\(age)")
     }
 
+    static var amount: Content {
+        amount(in: 0...100)
+    }
+
+    static func amount(in range: ClosedRange<Int>, by stride: Int = 5) -> Content {
+        let amount = Lorem<Int>.amount(in: range, by: stride)
+
+        if #available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *) {
+            let code: String
+
+            if #available(iOS 16, tvOS 13, macOS 13, watchOS 9, *) {
+                code = Locale.current.currency?.identifier ?? "USD"
+            } else {
+                code = Locale.current.currencyCode ?? "USD"
+            }
+
+            return Text(amount, format: .currency(code: code))
+        } else {
+            return Text(Lorem<String>.amount(in: range, by: stride))
+        }
+    }
 }
